@@ -8,7 +8,7 @@
 </head>
 <body>
 <form method ="post" action="FileUploadServlet" enctype="multipart/form-data" name="myForm">
-<input type="file" name="image" accept="Image/*">
+<input type="file" name="image" >
 <input type="submit" name="upload" value="Upload Image">
 </form>
 

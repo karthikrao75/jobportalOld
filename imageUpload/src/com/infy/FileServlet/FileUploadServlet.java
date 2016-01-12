@@ -52,7 +52,7 @@ public class FileUploadServlet extends HttpServlet {
 			// Set overall request size constraint
 			//upload1.setSizeMax(MAX_REQUEST_SIZE);
 
-			String path = "E:\\eclipseWorkplace\\imageUpload\\WebContent\\images\\";
+			String path = "E:\\git_eclipseProject\\imageUpload\\WebContent\\images";
 			try {
 				List fileItems = upload1.parseRequest(request);
 				Iterator i = fileItems.iterator();
