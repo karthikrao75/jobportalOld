@@ -1,0 +1,224 @@
+@charset "utf-8";
+
+
+body, h1, h2, h3, h4, h5, h6, p, ul, li{
+	margin:0px;
+	padding:0px;
+	}
+
+body, p, li, address, dd, blockquote {
+}
+
+
+a, a:hover {
+	text-decoration:none
+}
+h1, h2, h3, h4, h5, h6 {
+}
+h1, h1 a, h1 span {
+	font-size:26px;
+	
+}
+h2, h2 a, h2 span {
+	font-size:22px;
+	
+}
+h3, h3 a, h3 span {
+	font-size:20px;
+
+}
+h4, h4 a, h4 span {
+	font-size:18px;
+	
+}
+h5, h5 a, h5 span {
+	font-size:15px;
+	
+}
+h6, h6 a, h6 span {
+	font-size:12px;
+	
+}
+ ul {
+
+	list-style:none;
+	
+}
+
+
+
+
+.line {
+	border-top:1px solid #CFCFCF
+}
+.space {
+	height:30px
+}
+body .last, body .widget-last {
+	margin-right:0;
+	padding-right:0 !important;
+	border-right:0;
+}
+body .last-row {
+	margin-bottom:0;
+}
+.sidebar .widget-last {
+	margin-bottom:0;
+}
+.for-mobile {
+	display:none !important;
+}
+.not-logged-in .not__logged_in {
+	display:none !important;
+}
+p, li, address, dd, blockquote, a, body, h1, h2, h3, h4, h5, h6, p, dl, ul, ol {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+.clear{
+	clear:both;
+	}
+.padding-bt{
+padding-bottom:11px !important;
+}
+
+.bn{
+background:none !important;
+border:none !important;
+
+}
+.width{
+width:142px !important;
+}
+.padding1{
+padding:17px 0px 27px 0px;
+}
+.mar-right{
+margin-right:6px !important;
+}
+.mar-bot{
+margin-bottom:47px;
+}
+.mar-bot-none{
+margin-bottom:0px;
+}
+.mar-bo2t{
+margin-bottom:44px;
+}
+
+.width3{
+width:255px !important;
+}
+.width4{
+width:166px !important;
+}
+.width5{
+width:166px !important;
+}
+.mar{
+margin-right:0px !important;
+}
+
+.mn{
+margin:0px !important;
+}
+
+.space{
+height:19px;
+clear:both;
+
+}
+.wn{
+	width:auto !important;
+	}
+.text-a{
+text-align:left !important;
+}
+/*global style end*/
+/*============================================================*/
+
+
+.hidden {
+  visibility: hidden;
+}
+
+.wn {
+  width: auto !important;
+}
+
+.input p {
+  float: left;
+  margin-top: 10px;
+}
+
+.log_for_input {
+  background: url("../images/red.jpg") no-repeat scroll center center rgba(0, 0, 0, 0);
+  border: medium none;
+  border-radius: 12px;
+  color: #FFFFFF;
+  float: left;
+  height: 37px !important;
+  margin-left: 100px;
+  width: 150px !important;
+}
+
+.seeker_login p a {
+  color: #075BBB;
+  float: left;
+  margin: 8px 0 0 12px;
+}
+
+.new_user {
+  background: none repeat scroll 0 0 #E4ECFF;
+  border: 1px solid #A4A3A3;
+  border-radius: 10px;
+  margin: 10px 0 23px;
+  padding: 12px 0 22px 29px;
+  width: 409px;
+}
+
+.new_user h2 {
+  color: #4568CE;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.new_user ul {
+  margin: 20px 0 0 16px;
+}
+
+.new_user li {
+  list-style: disc outside url("../images/grn-arrow.gif");
+  margin-bottom: 11px;
+}
+
+.right-left {
+  float: left;
+  padding: 106px 0 0 100px;
+  width: 369px;
+}
+
+.right-left h1 {
+  color: #343434;
+  font-size: 30px;
+  margin-bottom: 17px;
+  font-weight: bold;
+}
+
+.right-left p {
+  color: #7F7F7F;
+  width: 293px;
+}
+
+.right-left img {
+  margin-bottom: 17px;
+}
+
+
+.width-ul{
+	width:326px;
+	}
+

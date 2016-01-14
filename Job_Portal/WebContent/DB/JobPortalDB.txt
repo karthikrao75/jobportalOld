@@ -1,0 +1,186 @@
+CREATE DATABASE job_portal_db;
+
+CREATE TABLE `tab_country` ( 
+	`country_id` INT(6) NOT NULL AUTO_INCREMENT, 
+	`country_name` VARCHAR(100) NOT NULL DEFAULT '',  	 
+	PRIMARY KEY  (`country_id`)
+) ENGINE=INNODB;
+
+CREATE TABLE `tab_state` ( 
+	`state_id` INT(6) NOT NULL AUTO_INCREMENT, 
+	`state_name` VARCHAR(100) NOT NULL DEFAULT '', 
+	`country_id` INT(6), 	 
+	PRIMARY KEY  (`state_id`),
+	KEY `country_id_fk1` (`country_id`),
+	CONSTRAINT tab_country_fk1 FOREIGN KEY(country_id) REFERENCES tab_country(country_id)
+) ENGINE=INNODB;
+
+CREATE TABLE `tab_city` ( 
+	`city_id` INT(6) NOT NULL AUTO_INCREMENT, 
+	`city_name` VARCHAR(100) NOT NULL DEFAULT '', 
+	`state_id` INT(6), 	 
+	PRIMARY KEY  (`city_id`),
+	KEY `state_id_fk1` (`state_id`),
+	CONSTRAINT tab_state_fk1 FOREIGN KEY(state_id) REFERENCES tab_state(state_id)
+) ENGINE=INNODB;
+
+INSERT INTO tab_country (country_name) VALUES ('Australia');
+INSERT INTO tab_country (country_name) VALUES ('United Kingdom');
+INSERT INTO tab_country (country_name) VALUES ('United States');
+INSERT INTO tab_country (country_name) VALUES ('India');
+INSERT INTO tab_country (country_name) VALUES ('Dubai');
+
+INSERT INTO tab_state (state_name, country_id) VALUES ('Sydney', 1);
+INSERT INTO tab_state (state_name, country_id) VALUES ('Melbourne', 1);
+INSERT INTO tab_state (state_name, country_id) VALUES ('London', 2);
+INSERT INTO tab_state (state_name, country_id) VALUES ('Bermingham', 2);
+INSERT INTO tab_state (state_name, country_id) VALUES ('Newyork', 3);
+INSERT INTO tab_state (state_name, country_id) VALUES ('Los Vegas', 3);
+INSERT INTO tab_state (state_name, country_id) VALUES ('Tamilnadu', 4);
+INSERT INTO tab_state (state_name, country_id) VALUES ('Karnataka', 4);
+INSERT INTO tab_state (state_name, country_id) VALUES ('Kerala', 4);
+INSERT INTO tab_state (state_name, country_id) VALUES ('Andhra Pradesh', 4);
+INSERT INTO tab_state (state_name, country_id) VALUES ('Dubai', 5);
+
+INSERT INTO tab_city (city_name, state_id) VALUES ('Chennai', 7);
+INSERT INTO tab_city (city_name, state_id) VALUES ('Trichy', 7);
+INSERT INTO tab_city (city_name, state_id) VALUES ('Madurai', 7);
+INSERT INTO tab_city (city_name, state_id) VALUES ('Hosur', 7);
+INSERT INTO tab_city (city_name, state_id) VALUES ('Bangalore', 8);
+INSERT INTO tab_city (city_name, state_id) VALUES ('Mysore', 8);
+INSERT INTO tab_city (city_name, state_id) VALUES ('Mangalore', 8);
+INSERT INTO tab_city (city_name, state_id) VALUES ('Trivandrum', 9);
+INSERT INTO tab_city (city_name, state_id) VALUES ('Cochin', 9);
+INSERT INTO tab_city (city_name, state_id) VALUES ('Hyderabad', 10);
+
+CREATE TABLE `tab_education_level` ( 
+	`education_level_id` INT(6) NOT NULL AUTO_INCREMENT, 
+	`education_level_name` VARCHAR(100) NOT NULL DEFAULT '',  	 
+	PRIMARY KEY  (`education_level_id`)
+) ENGINE=INNODB;
+
+INSERT INTO tab_education_level (education_level_name) VALUES ('Associate Degree');
+INSERT INTO tab_education_level (education_level_name) VALUES ('Bachelors Degree');
+INSERT INTO tab_education_level (education_level_name) VALUES ('Certification');
+INSERT INTO tab_education_level (education_level_name) VALUES ('Diploma');
+INSERT INTO tab_education_level (education_level_name) VALUES ('High School or equivalent');
+INSERT INTO tab_education_level (education_level_name) VALUES ('Master\'s Degree ');
+INSERT INTO tab_education_level (education_level_name) VALUES ('MBA');
+INSERT INTO tab_education_level (education_level_name) VALUES ('Military Service');
+INSERT INTO tab_education_level (education_level_name) VALUES ('Some College');
+INSERT INTO tab_education_level (education_level_name) VALUES ('Vocational');
+
+CREATE TABLE `tab_job_level` ( 
+	`job_level_id` INT(6) NOT NULL AUTO_INCREMENT, 
+	`job_level_name` VARCHAR(100) NOT NULL DEFAULT '',  	 
+	PRIMARY KEY  (`job_level_id`)
+) ENGINE=INNODB;
+
+INSERT INTO tab_job_level (job_level_name) VALUES ('Entry Level');
+INSERT INTO tab_job_level (job_level_name) VALUES ('Executive (SVP, VP, Director, etc)');
+INSERT INTO tab_job_level (job_level_name) VALUES ('Experienced (Non-Manager)');
+INSERT INTO tab_job_level (job_level_name) VALUES ('Manager (Manager/Supervisor of Staff)');
+INSERT INTO tab_job_level (job_level_name) VALUES ('Senior Executive (President, CTO, CFO, CEO)');
+INSERT INTO tab_job_level (job_level_name) VALUES ('Student (Intern)');
+
+CREATE TABLE `tab_employee` ( 
+	`employee_id` INT(6) NOT NULL AUTO_INCREMENT, 
+	`employee_email` VARCHAR(100) NOT NULL DEFAULT '', 
+	`employee_password` VARCHAR(100) NOT NULL DEFAULT '', 
+	`employee_first_name` VARCHAR(100) NOT NULL DEFAULT '', 
+	`employee_last_name` VARCHAR(100) NOT NULL DEFAULT '', 
+	`country_id` INT(6),
+	`state_id` INT(6),
+	`city_id` INT(6),
+	`postal_code` INT(6),
+	`education_level_id` INT(6),
+	`job_category` VARCHAR(100) NOT NULL DEFAULT '',
+	`job_level_id` INT(6),
+	`current_job_title` VARCHAR(100) NOT NULL DEFAULT '',
+	`employee_mobile` VARCHAR(100) NOT NULL DEFAULT '',	
+	PRIMARY KEY(`employee_id`),
+	KEY `country_id_fk2` (`country_id`),
+	CONSTRAINT tab_country_fk2 FOREIGN KEY(country_id) REFERENCES tab_country(country_id),
+	KEY `state_id_fk2` (`state_id`),
+	CONSTRAINT tab_state_fk2 FOREIGN KEY(state_id) REFERENCES tab_state(state_id),
+	KEY `city_id_fk1` (`city_id`),
+	CONSTRAINT tab_city_fk1 FOREIGN KEY(city_id) REFERENCES tab_city(city_id),
+	KEY `education_level_id_fk1` (`education_level_id`),
+	CONSTRAINT tab_education_level_fk1 FOREIGN KEY(education_level_id) REFERENCES tab_education_level(education_level_id),
+	KEY `job_level_id_fk1` (`job_level_id`),
+	CONSTRAINT tab_job_level_fk1 FOREIGN KEY(job_level_id) REFERENCES tab_job_level(job_level_id)
+)ENGINE=INNODB;
+
+ALTER TABLE tab_employee ADD `employee_primary_skills` VARCHAR(255) DEFAULT '';
+
+ALTER TABLE tab_employee ADD `employee_year_exp` INT(6);
+
+ALTER TABLE tab_employee ADD `employee_month_exp` INT(6);
+
+CREATE TABLE `tab_employee_profile` ( 
+	`employee_profile_id` INT(6) NOT NULL AUTO_INCREMENT, 
+	`employee_profile_title` VARCHAR(100) NOT NULL DEFAULT '', 
+	`profile_covering_letter` VARCHAR(100) NOT NULL DEFAULT '',	
+	`employee_id` INT(6),	
+	PRIMARY KEY(`employee_profile_id`),
+	KEY `employee_id_fk1` (`employee_id`),
+	CONSTRAINT tab_employee_fk1 FOREIGN KEY(employee_id) REFERENCES tab_employee(employee_id)	
+)ENGINE=INNODB;
+
+ALTER TABLE tab_employee_profile ADD `resume_path` VARCHAR(255) DEFAULT '';
+
+CREATE TABLE `tab_employer` ( 
+	`employer_id` INT(6) NOT NULL AUTO_INCREMENT, 
+	`employer_email` VARCHAR(100) NOT NULL DEFAULT '', 
+	`employer_password` VARCHAR(100) NOT NULL DEFAULT '', 
+	`employer_first_name` VARCHAR(100) NOT NULL DEFAULT '', 
+	`employer_last_name` VARCHAR(100) NOT NULL DEFAULT '', 
+	`employer_address` TEXT NOT NULL DEFAULT '',
+	`country_id` INT(6),
+	`state_id` INT(6),
+	`city_id` INT(6),
+	`postal_code` INT(6),	
+	`employer_position` VARCHAR(100) NOT NULL DEFAULT '',
+	`employer_industry` VARCHAR(100) NOT NULL DEFAULT '',	
+	`employer_mobile` VARCHAR(100) NOT NULL DEFAULT '',	
+	`number_of_employees` INT(6),	
+	PRIMARY KEY(`employer_id`),
+	KEY `country_id_fk3` (`country_id`),
+	CONSTRAINT tab_country_fk3 FOREIGN KEY(country_id) REFERENCES tab_country(country_id),
+	KEY `state_id_fk3` (`state_id`),
+	CONSTRAINT tab_state_fk3 FOREIGN KEY(state_id) REFERENCES tab_state(state_id),
+	KEY `city_id_fk3` (`city_id`),
+	CONSTRAINT tab_city_fk3 FOREIGN KEY(city_id) REFERENCES tab_city(city_id)	
+)ENGINE=INNODB;
+
+CREATE TABLE `tab_employer_job` ( 
+	`employer_job_id` INT(6) NOT NULL AUTO_INCREMENT, 
+	`employer_job_title` VARCHAR(100) NOT NULL DEFAULT '', 
+	`employer_job_descr` TEXT NOT NULL DEFAULT '',
+	`exp_year` INT(6),	
+	`exp_month` INT(6),
+	`salary` INT(6),	
+	`employer_job_role` VARCHAR(100) NOT NULL DEFAULT '',
+	`employer_job_location` VARCHAR(100) NOT NULL DEFAULT '',
+	`employer_id` INT(6),	
+	PRIMARY KEY(`employer_job_id`),
+	KEY `employer_id_fk4` (`employer_id`),
+	CONSTRAINT tab_employee_fk4 FOREIGN KEY(employer_id) REFERENCES tab_employer(employer_id)	
+)ENGINE=INNODB;
+
+ALTER TABLE tab_employer ADD `company_name` VARCHAR(255) DEFAULT '';
+
+CREATE TABLE `tab_applied_cand` ( 
+	`applied_cand_id` INT(6) NOT NULL AUTO_INCREMENT, 	
+	`employee_profile_id` INT(6),	
+	`employer_job_id` INT(6),	
+	PRIMARY KEY(`applied_cand_id`),
+	KEY `employee_profile_id_fk2` (`employee_profile_id`),
+	CONSTRAINT tab_employee_profile_fk3 FOREIGN KEY(employee_profile_id) REFERENCES tab_employee_profile(employee_profile_id),
+	KEY `tab_employer_job_fk3` (`employer_job_id`),
+	CONSTRAINT tab_employer_job_fk3 FOREIGN KEY(employer_job_id) REFERENCES tab_employer_job(employer_job_id)
+)ENGINE=INNODB;
+
+
+
+ALTER TABLE tab_employee_profile MODIFY COLUMN `profile_covering_letter` TEXT NOT NULL DEFAULT ''

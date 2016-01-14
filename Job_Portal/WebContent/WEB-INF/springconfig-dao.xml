@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><!--
+	Defines the Data Layer 
+-->
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+        destroy-method="close">
+        <beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <beans:property name="url"
+            value="jdbc:mysql://localhost:3306/job_portal_db" />
+        <beans:property name="username" value="root" />
+        <beans:property name="password" value="password" />
+    </beans:bean>
+ 
+    <!-- Hibernate 4 SessionFactory Bean definition -->
+    <beans:bean id="hibernate4AnnotatedSessionFactory"
+        class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <beans:property name="dataSource" ref="dataSource" />
+        <beans:property name="annotatedClasses">
+            <beans:list>                
+                <beans:value>com.job.portal.domain.Country</beans:value>	
+				<beans:value>com.job.portal.domain.State</beans:value>
+				<beans:value>com.job.portal.domain.City</beans:value>
+				<beans:value>com.job.portal.domain.EducationLevel</beans:value>
+				<beans:value>com.job.portal.domain.JobLevel</beans:value>
+				<beans:value>com.job.portal.domain.Employee</beans:value>
+				<beans:value>com.job.portal.domain.EmployeeProfile</beans:value>
+				<beans:value>com.job.portal.domain.Employer</beans:value>
+				<beans:value>com.job.portal.domain.EmployerJob</beans:value>
+				<beans:value>com.job.portal.domain.AppliedCandidates</beans:value>
+            </beans:list>
+        </beans:property>
+        <beans:property name="hibernateProperties">
+            <beans:props>
+                <beans:prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect
+                </beans:prop>
+                <beans:prop key="hibernate.show_sql">true</beans:prop>
+            </beans:props>
+        </beans:property>
+    </beans:bean>
+    
+    <beans:bean id="countryDAO" class="com.job.portal.dao.hibernate.CountryDAOImpl">
+        <beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </beans:bean>
+    
+    <beans:bean id="stateDAO" class="com.job.portal.dao.hibernate.StateDAOImpl">
+        <beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </beans:bean>
+    
+    <beans:bean id="cityDAO" class="com.job.portal.dao.hibernate.CityDAOImpl">
+        <beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </beans:bean>
+    
+    <beans:bean id="educationLevelDAO" class="com.job.portal.dao.hibernate.EducationLevelDAOImpl">
+        <beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </beans:bean>
+    
+    <beans:bean id="jobLevelDAO" class="com.job.portal.dao.hibernate.JobLevelDAOImpl">
+        <beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </beans:bean>
+    
+    <beans:bean id="employeeDAO" class="com.job.portal.dao.hibernate.EmployeeDAOImpl">
+        <beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </beans:bean>   
+    
+    <beans:bean id="employeeProfileDAO" class="com.job.portal.dao.hibernate.EmployeeProfileDAOImpl">
+        <beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </beans:bean> 
+    
+    <beans:bean id="employerJobDAO" class="com.job.portal.dao.hibernate.EmployerJobDAOImpl">
+        <beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </beans:bean> 
+    
+    <beans:bean id="employerDAO" class="com.job.portal.dao.hibernate.EmployerDAOImpl">
+        <beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </beans:bean>   
+    
+    <beans:bean id="appliedCandidatesDAO" class="com.job.portal.dao.hibernate.AppliedCandidatesDAOImpl">
+        <beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </beans:bean>   	
+    
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+     
+    <beans:bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </beans:bean>
+	
+</beans:beans>
